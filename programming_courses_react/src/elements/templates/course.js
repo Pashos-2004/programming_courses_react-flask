@@ -1,11 +1,17 @@
 import React,{useEffect,useState} from 'react';
 import { Box,colors } from '@mui/material';
 import Button from '@mui/material/Button';
+import "./courses.css"
 
 export default  function Course(props){
+    function corseOnClick (){
+       
+        console.log("Был клик по "+props.courseTitle+"\n C ид:" + props.id)
+    }
+
     return (
-        <div >
-            <table border={0} align='center' bgcolor={colors.grey[100]}>
+        <div onClick={corseOnClick} >
+            <table border={0} align='center' bgcolor={colors.grey[100]} className='CoursesDiv'>
 
                 <tr  >
                     <td rowSpan={2}>
@@ -14,9 +20,7 @@ export default  function Course(props){
                     <th width={"800"}>
                     {props.courseTitle}
                     </th>
-                
                 </tr>
-
                 <tr>
                    
                     <td>{props.courseText}</td>
@@ -24,10 +28,6 @@ export default  function Course(props){
                 
             </table>
             <br></br>
-        <Box paddingLeft={"49.5%"} >
-        < Button variant="contained" >Посмотреть</Button>
-        </Box>
-        <br></br>
         </div> 
     )
 }

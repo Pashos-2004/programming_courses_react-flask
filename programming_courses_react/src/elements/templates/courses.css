@@ -1,0 +1,4 @@
+.CoursesDiv:hover{
+    cursor: pointer;
+    background-color: rgb(165, 163, 163);
+}
