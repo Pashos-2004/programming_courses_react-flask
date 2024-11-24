@@ -18,7 +18,7 @@ export default  function ShowCourses(props){
     
 
     let buff = arr.map((el)=>{return <Course  courseText={el.get("courseText")} courseTitle={el.get("courseTitle")} picture={el.get("picture")} id={el.get("id")}   />})
-    
+
 
     return (
         <div>
