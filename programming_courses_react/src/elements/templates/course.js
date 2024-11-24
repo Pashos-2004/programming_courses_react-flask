@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
-import { Box,colors } from '@mui/material';
+
+import { Box,colors} from '@mui/material';
 import Button from '@mui/material/Button';
 import "./courses.css"
 
@@ -7,6 +8,7 @@ export default  function Course(props){
     function corseOnClick (){
        
         console.log("Был клик по "+props.courseTitle+"\n C ид:" + props.id)
+       // window.location.replace('http://localhost:3000/'+props.courseTitle)
     }
 
     return (
