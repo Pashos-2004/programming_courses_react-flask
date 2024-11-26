@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-
+import CourseMenu from './elements/templates/courseMenu.js';
 import MainPage from "../src/elements/mainPage.jsx"
 
 
@@ -11,7 +11,8 @@ function App() {
   return (
     <div className="App">
        
-       <MainPage/>
+       
+       <CourseMenu CourseTitle="C++ это круто"/>
     </div>
   );
 }
