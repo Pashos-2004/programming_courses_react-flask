@@ -27,7 +27,7 @@ export default  function Top_bar (props){
           bgcolor:colors.blue[500],
           paddingLeft: "10%",
           paddingRight:"10%"}}>
-          <TabList onChange={tabChange} aria-label="lab API tabs example">
+          <TabList onChange={tabChange} >
             <Tab label="Главная страница" value="1" />
             <Tab label="Курсы" value="2" />
             <Tab label="О нас" value="3" />

@@ -3,6 +3,7 @@ import { Box,colors } from '@mui/material';
 import Course from "./course.js"
 import cPlusPicrure from "../../pictures/c++.png"
 import cSharpPicture from "../../pictures/cSh.png"
+import def from "../../pictures/default.png";
 
 export default  function ShowCourses(props){
     const [Courses,SetCourses] = useState(<h1>Что-то пошло не так и курсы не загрузились</h1>);
@@ -13,7 +14,7 @@ export default  function ShowCourses(props){
     first.set("id",26)
     first.set("courseText","sdhtrehf")
     first.set("courseTitle","dfrjtfg")
-    first.set("picture",cSharpPicture)
+    first.set("picture",def)
     arr.push(first)
     
 
