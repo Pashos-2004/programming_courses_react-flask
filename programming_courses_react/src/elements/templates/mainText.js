@@ -5,7 +5,7 @@ import "./mainText.css"
 export default  function MainText (props){
 
     return(
-        <Box className="MainPage_text" alignContent={"left"}>
+        <Box className="MainPageText" alignContent={"left"}>
             <h2>Добро пожаловать в PPProgram — твой старт в мир программирования!</h2>
             <p>Хотите научиться создавать веб-приложения, разрабатывать мобильные приложения или погрузиться в анализ данных? PPProgram — это курсы, которые помогут вам освоить программирование с нуля или углубить уже имеющиеся знания.</p>
 <h3>Почему стоит выбрать PPProgram?</h3>

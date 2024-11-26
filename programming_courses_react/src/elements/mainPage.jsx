@@ -4,7 +4,7 @@ import Top_bar from './templates/top_bar.js';
 import { Stack } from '@mui/material'
 import ShowCourses from './templates/showCourses.js';
 import MainText from './templates/mainText.js';
-
+import AboutUsText from './templates/aboutUsText.js';
 
 export default function MainPage(){
     const [IsAdmin, SetIsAdmin] = React.useState(true);
@@ -19,7 +19,7 @@ return (
         <br></br>
         <Top_bar MainPageText={<MainText/>}
          CoursesText={<ShowCourses />}
-        AboutUsText="Мы лучшие ураааааа" AdminText="YOU are admin" 
+        AboutUsText={<AboutUsText/>} AdminText="YOU are admin" 
         IsAdmin={IsAdmin}
         ></Top_bar>
         
