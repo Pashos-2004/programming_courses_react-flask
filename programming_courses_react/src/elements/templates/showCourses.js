@@ -12,7 +12,7 @@ export default  function ShowCourses(props){
     let arr = [];
     let first = new Map()
     first.set("id",26)
-    first.set("courseText","sdhtrehf")
+    first.set("courseDescription","sdhtrehf")
     first.set("courseTitle","dfrjtfg")
     first.set("picture",def)
     arr.push(first)
@@ -24,8 +24,8 @@ export default  function ShowCourses(props){
     return (
         <div>
             {buff}            
-            <Course courseText="Здесь мог бы быть ваш курс" courseTitle="Ура пиво" picture={cPlusPicrure} id={1}/>
-            <Course courseText="Здесь мог бы быть ваш курс" courseTitle="Ура пиво" picture={cSharpPicture} id={2}/>
+            <Course courseDescription="Здесь мог бы быть ваш курс" courseTitle="Ура пиво" picture={cPlusPicrure} id={1}/>
+            <Course courseDescription="Здесь мог бы быть ваш курс" courseTitle="Ура пиво" picture={cSharpPicture} id={2}/>
 
             
         </div>

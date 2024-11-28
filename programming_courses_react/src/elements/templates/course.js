@@ -25,7 +25,7 @@ export default  function Course(props){
                 </tr>
                 <tr>
                    
-                    <td>{props.courseText}</td>
+                    <td>{props.courseDescription}</td>
                 </tr>
                 
             </table>

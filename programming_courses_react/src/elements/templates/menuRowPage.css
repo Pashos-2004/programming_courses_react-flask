@@ -1,0 +1,6 @@
+.menuRow{
+    text-align: left;
+}
+.menuRow:hover{
+    background: rgb(219, 216, 216);
+}
