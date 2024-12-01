@@ -73,14 +73,22 @@ export default  function PersonalAccount (props){
         return isOk;
     }
     function saveBtnOnClick(){
-
-
         if(validateForm()){
-            
+            console.log("Успешная валидация")
         }
     }
 
+    function exitBtnOnClick(){
 
+
+    }
+
+    function authBtnOnClick(){
+
+
+    }
+
+    if(props.IsAuth){
     return(
         <Box className="PersonalAccount" alignContent={"left"}>
             <h1>Добро пожаловать, рады видеть вас снова!</h1>
@@ -122,8 +130,20 @@ export default  function PersonalAccount (props){
             />
             <br/>
             <Button variant="contained" onClick={saveBtnOnClick}>Сохранить изменения</Button>
+            <br/>
+        
+            <br/>
+            <Button variant="outlined" color="error" onClick={exitBtnOnClick}>Выйти из аккаунта</Button>
             
         </Box>
-    );
+    );}
+    else{
+        return(
+            <Box className="PersonalAccount" alignContent={"left"}>
+            <Button variant="contained" onClick={authBtnOnClick}>Авторизоваться</Button>
+            </Box>
+
+        );
+    }
 
 }

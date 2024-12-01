@@ -20,7 +20,7 @@ return (
         <br></br>
         <Top_bar MainPageText={<MainText/>}
          CoursesText={<ShowCourses />}
-        AboutUsText={<AboutUsText/>} PersonalAccountText={<PersonalAccount UserEMail="lox@auf.ru"/>} 
+        AboutUsText={<AboutUsText/>} PersonalAccountText={<PersonalAccount UserEMail="lox@auf.ru" IsAuth={IsAuth}/>} 
         IsAuth={IsAuth}
         ></Top_bar>
         

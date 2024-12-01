@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import CourseMenu from './elements/courseMenu.js';
 import MainPage from "../src/elements/mainPage.jsx"
+import Auth_reg from "./elements/auth_reg.js"
+import PageWithText from './elements/templates/pageWithText.js';
 
 
 function App() {
@@ -12,7 +14,7 @@ function App() {
     <div className="App">
        
        
-       <MainPage  />
+       <PageWithText />
     </div> 
     
   );

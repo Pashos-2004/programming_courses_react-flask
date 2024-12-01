@@ -15,7 +15,7 @@ export default  function Top_bar (props){
           SetInfo(newValue);
     };
 
-     let tab4 = props.IsAuth ?  <Tab label="Личный кабинет" value="4" /> : <Tab label="Личный кабинет" value="4" disabled/>
+     //let tab4 = props.IsAuth ?  <Tab label="Личный кабинет" value="4" /> : <Tab label="Личный кабинет" value="4" disabled/>
     
     return(
                
@@ -31,7 +31,7 @@ export default  function Top_bar (props){
             <Tab label="Главная страница" value="1" />
             <Tab label="Курсы" value="2" />
             <Tab label="О нас" value="3" />
-             {tab4}
+            <Tab label="Личный кабинет" value="4" />
           </TabList>
         </Box>
         <TabPanel value="1">{props.MainPageText}</TabPanel>
