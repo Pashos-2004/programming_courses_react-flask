@@ -10,7 +10,9 @@ function App() {
   
   return (
     <div className="App">
-       <CourseMenu  />
+       
+       
+       <MainPage  />
     </div> 
     
   );

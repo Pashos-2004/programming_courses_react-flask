@@ -15,7 +15,7 @@ export default  function Top_bar (props){
           SetInfo(newValue);
     };
 
-     let tab4 = props.IsAdmin ?  <Tab label="Администрирование" value="4" /> : <Tab label="Администрирование" value="4" disabled/>
+     let tab4 = props.IsAuth ?  <Tab label="Личный кабинет" value="4" /> : <Tab label="Личный кабинет" value="4" disabled/>
     
     return(
                
@@ -37,7 +37,7 @@ export default  function Top_bar (props){
         <TabPanel value="1">{props.MainPageText}</TabPanel>
         <TabPanel value="2">{props.CoursesText}</TabPanel>
         <TabPanel value="3">{props.AboutUsText}</TabPanel>
-        <TabPanel value="4">{props.AdminText}</TabPanel>
+        <TabPanel value="4">{props.PersonalAccountText}</TabPanel>
       </TabContext>
 
 

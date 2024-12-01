@@ -5,9 +5,10 @@ import { Stack } from '@mui/material'
 import ShowCourses from './templates/showCourses.js';
 import MainText from './templates/mainText.js';
 import AboutUsText from './templates/aboutUsText.js';
+import PersonalAccount from './templates/PersonalAccount.js';
 
 export default function MainPage(){
-    const [IsAdmin, SetIsAdmin] = React.useState(true);
+    const [IsAuth, SetIsAuth] = React.useState(true);
     
 return (
     <div>
@@ -19,8 +20,8 @@ return (
         <br></br>
         <Top_bar MainPageText={<MainText/>}
          CoursesText={<ShowCourses />}
-        AboutUsText={<AboutUsText/>} AdminText="YOU are admin" 
-        IsAdmin={IsAdmin}
+        AboutUsText={<AboutUsText/>} PersonalAccountText={<PersonalAccount UserEMail="lox@auf.ru"/>} 
+        IsAuth={IsAuth}
         ></Top_bar>
         
         
