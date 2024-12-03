@@ -11,10 +11,9 @@ function App() {
   console.log("http://localhost:3000/"== window.location.href)
   
   return (
-    <div className="App">
-       
-       
-       <PageWithText />
+    <div className="App">  
+       <PageWithText IsAdmin={true} number={2} maxNumber={9}/>
+
     </div> 
     
   );
