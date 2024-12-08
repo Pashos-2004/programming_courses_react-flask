@@ -37,6 +37,7 @@ export default function PageWithText(props){
                     fullWidth
                     maxRows={20}
                     margin="dense"
+                    
                 />
                 <br/>
                 <br/>
