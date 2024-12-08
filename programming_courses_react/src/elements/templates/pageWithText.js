@@ -1,6 +1,6 @@
 import React,{ useEffect, useState }  from 'react';
 import Logo from './logo_template.js';
-import { Box,colors,TextField } from '@mui/material';
+import { Box,colors,TextField, Button} from '@mui/material';
 import PrevAndNextBnt from './PrevAndNextBnt.js'
 import BackToMenuBtn from './backTomenuBtn.js';
 import "./pageWithText.css"
@@ -22,15 +22,32 @@ export default function PageWithText(props){
         return res
     }
 
+    function SaveBtnOnClick(){
+
+        console.log("Был клик на кнопку сохранения");
+
+    }
+
     if(props.IsAdmin){
         return (
             <div>
                 <Logo/>
                 <Box paddingLeft={"20%"} paddingRight={"20%"}>
 
-                <h1>{PageTitle}</h1>
+                
                 <TextField
-                    id="outlined-multiline-flexible"
+                    id="Title"
+                    label="Заголовок"
+                    defaultValue={PageTitle}
+                    multiline
+                    fullWidth
+                    maxRows={20}
+                    margin="dense"
+                    
+                />
+                <br/>
+                <TextField
+                    id="mainText"
                     label="Текст страницы"
                     defaultValue={Text}
                     multiline
@@ -41,6 +58,12 @@ export default function PageWithText(props){
                 />
                 <br/>
                 <br/>
+                <Button  variant="contained" onClick={SaveBtnOnClick} >Сохранить</Button>
+                <br/>
+                <br/><br/>
+                <br/>
+                <BackToMenuBtn />
+                
                 <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
                 
                 </Box>
@@ -54,10 +77,6 @@ export default function PageWithText(props){
                 <h1>{PageTitle}</h1>
                 {SplitIntoParagraphs(Text,'\n')}
 
-                <p>
-                
-1
-                </p>
     
                 <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
                 <BackToMenuBtn/>

@@ -5,7 +5,7 @@ import { Box,Button,colors,TextField } from '@mui/material';
 export default function BackToMenuBtn(props){
     
     function BackToMenuBtnOnClick(){
-
+        console.log("Был клик для возврата на главную")
     }
 
     return(

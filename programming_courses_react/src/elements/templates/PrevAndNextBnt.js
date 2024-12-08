@@ -13,12 +13,12 @@ export default function PrevAndNextBnt(props){
     }
 
     function NextBtnOnClick(){
-        if(props.maxNumber<props.number)
-        console.log("Был клик вперёд")
+  
+        if(props.maxNumber>props.number){console.log("Был клик вперёд")}
     }
 
     let prevBTN = props.number > 1 ? <Button variant="contained" onClick={PrevBtnOnClick}>Назад</Button> : <div></div>
-    let nextBTN = props.number < props.maxNumber ? <Button variant="contained">Вперёд</Button> : <div></div>
+    let nextBTN = props.number < props.maxNumber ? <Button variant="contained" onClick={NextBtnOnClick}>Вперёд</Button> : <div></div>
 return (
     <div className='prevAndNextBntDiv'>
         <Stack direction={'row'} spacing={"80%"}>      

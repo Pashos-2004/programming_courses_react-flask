@@ -4,7 +4,7 @@ import CourseMenu from './elements/courseMenu.js';
 import MainPage from "../src/elements/mainPage.jsx"
 import Auth_reg from "./elements/auth_reg.js"
 import PageWithText from './elements/templates/pageWithText.js';
-
+import PageWithVideo from './elements/templates/pageWithVideo.js';
 
 function App() {
   console.log(window.location.href)
@@ -12,7 +12,7 @@ function App() {
   
   return (
     <div className="App">  
-       <PageWithText IsAdmin={true} number={2} maxNumber={9}/>
+       <PageWithVideo IsAdmin={true} number={2} maxNumber={9}/>
 
     </div> 
     
@@ -20,3 +20,4 @@ function App() {
 }
 
 export default App;
+ 
