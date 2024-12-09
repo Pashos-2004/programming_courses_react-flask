@@ -12,8 +12,7 @@ function App() {
   
   return (
     <div className="App">  
-       <PageWithVideo IsAdmin={true} number={2} maxNumber={9}/>
-
+       <Auth_reg/>
     </div> 
     
   );

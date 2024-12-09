@@ -60,12 +60,10 @@ export default function PageWithText(props){
                 <br/>
                 <Button  variant="contained" onClick={SaveBtnOnClick} >Сохранить</Button>
                 <br/>
-                <br/><br/>
-                <br/>
-                <BackToMenuBtn />
+                
                 
                 <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
-                
+                <BackToMenuBtn />
                 </Box>
             </div>
             );

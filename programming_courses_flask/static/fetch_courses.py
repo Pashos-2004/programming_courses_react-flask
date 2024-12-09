@@ -5,7 +5,7 @@ from jinja2 import TemplateNotFound
 from flask import request
 from datetime import date
 from decimal import Decimal
-
+from pymongo import MongoClient
 
 fetch_courses = Blueprint('fetch_courses', __name__)
 
