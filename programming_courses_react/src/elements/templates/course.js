@@ -6,9 +6,12 @@ import "./courses.css"
 
 export default  function Course(props){
     function corseOnClick (){
-       
-        console.log("Был клик по "+props.courseTitle+"\n C ид:" + props.id)
-       // window.location.replace('http://localhost:3000/'+props.courseTitle)
+        if(!(sessionStorage.getItem("isAuth")=="true")){
+            alert("Сначала авторизуйтесь");
+            return 
+        }
+       // console.log("Был клик по "+props.courseTitle+"\n C ид:" + props.id)
+       window.location.href= 'http://localhost:3000/courseMenu/'+props.id
     }
 
     return (

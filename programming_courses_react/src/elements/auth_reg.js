@@ -77,28 +77,48 @@ export default  function Auth_reg (props){
         if(EmailError){return}
         if(PasswdError){return}
         if(Passwd2Error){return}
+        //console.log(navigator.userAgent);  
+        
+        
+        
+        
 
-       
-        let values 
-        if(!IsReg){
-
-                //let passwd2 = document.getElementById("reg_passwd_2").value
-
-                values = {"email":email,"password":passwd}
-                try
-                {
-                    console.log(JSON.stringify(values))
-                    response = await proxy.post("/auth_user", JSON.stringify(values, null));
-                    //console.log(response?.data);
-                }
-                catch(e)
-                {
-                    console.log(e);
-                }
                 
-        }
 
+            let values = {"email":email,"password":passwd,"device":navigator.userAgent.toString()}
+            try
+            {
+                //console.log(JSON.stringify(values))
+                //response = await proxy.post("/auth_user", JSON.stringify(values, null));
+                if(!IsReg){
+                    response = await proxy.post("/auth_user", JSON.stringify(values, null));
+                }else{
+                    response = await proxy.post("/reg_user", JSON.stringify(values, null));
+                }
+                let data = response?.data;
+                console.log(response?.data);
+                if(data["status"]==401){
+                    alert(data["info"]);
+                }
+                if(data["status"]==200){
+                    sessionStorage.setItem("user_id",data["user_id"]);
+                    sessionStorage.setItem("token",data["token"]);
+                    sessionStorage.setItem("isAdmin",data["isAdmin"]);
+                    sessionStorage.setItem("email",data["email"])
+                    sessionStorage.setItem("isAuth",true);
+                    //console.log(sessionStorage);
+                    window.location.href = "http://localhost:3000/MainPage"
+                }
+            }
+            catch(e)
+            {
+                console.log(e);
+            }
+            
+        
     }
+
+    
    
     return(
         <div className='AuthPage'>

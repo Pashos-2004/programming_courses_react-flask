@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { Box,TextField,colors,Button } from '@mui/material';
-
+import { proxy } from '../../consts/proxy';
 import "./personalAccount.css"
 import { common } from '@mui/material/colors';
 
@@ -12,11 +12,6 @@ export default  function PersonalAccount (props){
     const [NewPasswdError1,SetNewPasswdError1] = useState(false);
     const [NewPasswdError2,SetNewPasswdError2] = useState(false);
 
-    const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-
-    const validateEmail = (email) => {
-        return EMAIL_REGEXP.test(email)
-      };
 
     function validateOldPasswd(){
         let oldPasswd = document.getElementById("old_passwd");
@@ -43,16 +38,12 @@ export default  function PersonalAccount (props){
         
         let newPasswd2 = document.getElementById("new_passwd_2")
 
-        SetEmailError(false);
+       
         SetOldPasswdError(false);
         SetNewPasswdError1(false);
         SetNewPasswdError2(false);
         
-        if(!validateEmail(email.value)) {
-            SetEmailError(true);
-            isOk=false;
-            alert("Неверный формат почты")
-        }
+        
 
         if(!validateOldPasswd){
             SetOldPasswdError(true);
@@ -72,19 +63,60 @@ export default  function PersonalAccount (props){
 
         return isOk;
     }
-    function saveBtnOnClick(){
+    async function saveBtnOnClick(){
         if(validateForm()){
             console.log("Успешная валидация")
+
+            
+            let passwd = document.getElementById("new_passwd_1").value
+            let old_passwd = document.getElementById("old_passwd").value
+    
+            let response = null;
+            let values = {"_id":sessionStorage.getItem("user_id"),"old_password":old_passwd,"password":passwd,"token":sessionStorage.getItem("token"),"device":navigator.userAgent.toString()}
+            try
+            {
+                console.log(JSON.stringify(values))
+                //response = await proxy.post("/auth_user", JSON.stringify(values, null));
+                
+                response = await proxy.post("/change_information", JSON.stringify(values, null));
+                
+                let data = response?.data;
+                console.log(response?.data);
+                if(data["status"]==403){
+                    sessionStorage.clear();
+                    alert(data["info"]);
+                    document.location.href = "/MainPage"
+                }
+                if(data["status"]==401){
+                    alert(data["info"]);
+                }
+                if(data["status"]==200){
+                    sessionStorage.setItem("user_id",data["user_id"]);
+                    sessionStorage.setItem("token",data["token"]);
+                    sessionStorage.setItem("isAdmin",data["isAdmin"]);
+                    sessionStorage.setItem("email",data["email"])
+                    sessionStorage.setItem("isAuth",true);
+                    //console.log(sessionStorage);
+                    alert("Смена прошла успешно")
+                    window.location.href = "http://localhost:3000/MainPage"
+                }
+            }
+            catch(e)
+            {
+                console.log(e);
+            }
+
         }
     }
 
     function exitBtnOnClick(){
-
+        sessionStorage.clear()
+        window.location.href = "http://localhost:3000/MainPage"
 
     }
 
     function authBtnOnClick(){
-
+        window.location.href = "http://localhost:3000/auth-reg"
 
     }
 
@@ -92,15 +124,7 @@ export default  function PersonalAccount (props){
     return(
         <Box className="PersonalAccount" alignContent={"left"}>
             <h1>Добро пожаловать, рады видеть вас снова!</h1>
-            <TextField
-                error={EmailError}
-                id="Email_Field"
-                label="Почта"
-                defaultValue={props.UserEMail}
-                helperText="Введите новую почту"
-                margin="dense"
-            />
-            <br/>
+            
             <TextField
                 error={OldPasswdError}
                 id="old_passwd"
