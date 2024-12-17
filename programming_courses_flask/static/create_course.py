@@ -22,12 +22,13 @@ def create():
     
     con = MongoClient("mongodb://localhost:27017")
     db = con["CoursesDB"]
-    comp = check_token(request_data)
+    
+    comp = check_token(request_data,True)
     if(comp!="OK"):
         return comp
 
     courses = db.Courses
-    courses.insert_one({"title":request_data["title"],"description":request_data["description"],"picture":request_data["picture"],"countOfPages":0,"pages":[]}).inserted_id
+    page_id= courses.insert_one({"title":request_data["title"],"description":request_data["description"],"picture":request_data["picture"],"countOfPages":0,"pages":[]}).inserted_id
+    
 
-
-    return json.dumps( {"status":200})
+    return json.dumps( {"status":200,"page_id":str(page_id)})

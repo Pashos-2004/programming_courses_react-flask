@@ -50,7 +50,7 @@ export default  function ShowCourses(props){
                     >
                     
                     <MenuItem value={"def"}><img src={def} width={50} height={50}></img></MenuItem>
-                    <MenuItem value={"c++"}><img src={cPlusPicrure} width={50} height={50}></img></MenuItem>
+                    <MenuItem value={"cPlus"}><img src={cPlusPicrure} width={50} height={50}></img></MenuItem>
                     <MenuItem value={"c#"}><img src={cSharpPicture} width={50} height={50}></img></MenuItem>
                     <MenuItem value={"python"}><img src={pythonPicture} width={50} height={50}></img></MenuItem>
                     <MenuItem value={"java"}><img src={javaPicture} width={50} height={50}></img> </MenuItem>
@@ -82,7 +82,7 @@ export default  function ShowCourses(props){
                 />
                 <br/>
                 <br/>
-                <Button  variant="contained" onClick={SaveBtnOnClick} >Сохранить</Button>
+                <Button  variant="contained" onClick={SaveBtnOnClick} >Добавить</Button>
                 <br/>
                 <br/>
 
@@ -99,7 +99,8 @@ export default  function ShowCourses(props){
         if(Picture === undefined) setPictureError(true);
         if(Title === undefined || Title==="") setTitleError(true);
         if(Description === undefined || Description==="") setDescriptionError(true);
-        let values = {"_id":sessionStorage.getItem("user_id"),"picture":Picture,"title":Title,"description":Description,"token":sessionStorage.getItem("token"),"device":navigator.userAgent.toString()}
+        
+        let values = {"_id":sessionStorage.getItem("user_id"),"picture":Picture,"title":(Title).replace("+","|{|PLUS|}|"),"description":Description.replace("+","|{|PLUS|}|"),"token":sessionStorage.getItem("token"),"device":navigator.userAgent.toString()}
         let response;
         try
         {
@@ -122,7 +123,7 @@ export default  function ShowCourses(props){
                 
                 
                 alert("Успешно добавлено")
-                window.location.href = "http://localhost:3000/MainPage"
+                window.location.href = "http://localhost:3000/courseMenu"+"/"+data["page_id"]
             }
         }
         catch(e)
@@ -150,7 +151,7 @@ export default  function ShowCourses(props){
         let pictures;
         pictures =new Map();
         pictures.set("def",def);
-        pictures.set("c++",cPlusPicrure);
+        pictures.set("cPlus",cPlusPicrure);
         pictures.set("c#",cSharpPicture);
         pictures.set("java",javaPicture);
         pictures.set("python",pythonPicture);
@@ -179,7 +180,7 @@ export default  function ShowCourses(props){
             SetCourses(courses.map((el)=>{
                 
                 
-                return <Course  courseText={el.get("courseText")} courseTitle={el.get("courseTitle")} picture={pictures.get(el.get("picture"))} id={el.get("id")}/>}))
+                return <Course  courseDescription={(el.get("courseDescription")).split("|{|PLUS|}|").join("+")} courseTitle={(el.get("courseTitle")).split("|{|PLUS|}|").join("+")} picture={pictures.get(el.get("picture"))} id={el.get("id")}/>}))
             
             
         }

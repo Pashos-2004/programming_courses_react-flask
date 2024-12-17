@@ -9,7 +9,7 @@ import PersonalAccount from './templates/PersonalAccount.js';
 
 
 export default function MainPage(){
-    const [IsAuth, SetIsAuth] = React.useState(true);
+    
     
 return (
     <div>
@@ -23,7 +23,7 @@ return (
          CoursesText={<ShowCourses />}
         AboutUsText={<AboutUsText/>} 
         PersonalAccountText={<PersonalAccount UserEMail={sessionStorage.getItem("email") ? sessionStorage.getItem("email"):"" } IsAuth={sessionStorage.getItem("isAuth")=="true"}/>} 
-        IsAuth={IsAuth}
+        IsAuth={sessionStorage.getItem("isAuth")=="true"}
         ></Top_bar>
         
         

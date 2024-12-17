@@ -9,13 +9,7 @@ export default function PageWithText(props){
 
 
     const [PageTitle,SetPageTitle] = useState("C++ это круто");
-    const [Text,SetText] = useState(`По умолчанию язык C++ не содержит встроенных средств для ввода с консоли и вывода на консоль, эти средства предоставляются библиотекой iostream. В ней определены два типа: istream и ostream. istream представляет поток ввода, а ostream - поток вывода.
-
-Вообще, сам термин "поток" в данном случае представляет последовательность символов, которая записывается на устройство ввода-вывода или считывается с него. И в данном случае под устройством ввода-вывода рассматривается консоль.
-
-Для записи или вывода символов на консоль применяется объект cout, который представляет тип ostream. А для чтения с консоли используется объект cin
-
-Для использования этих объектов в начало исходного файла необходимо подключить библиотеку iostream:`)
+    const [Text,SetText] = useState(props.text )
 
     function SplitIntoParagraphs(str,divider){
         let res = str.split(divider).map(item => <p className='Text'>{item}</p>)
@@ -28,7 +22,7 @@ export default function PageWithText(props){
 
     }
 
-    if(props.IsAdmin){
+    if(sessionStorage.getItem("isAdmin")=="true"){
         return (
             <div>
                 <Logo/>
@@ -57,12 +51,13 @@ export default function PageWithText(props){
                     
                 />
                 <br/>
+                
                 <br/>
                 <Button  variant="contained" onClick={SaveBtnOnClick} >Сохранить</Button>
                 <br/>
                 
                 
-                <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
+                <PrevAndNextBnt courseID={props.courseID} number={props.number} maxNumber={props.maxNumber}/>
                 <BackToMenuBtn />
                 </Box>
             </div>
@@ -76,7 +71,7 @@ export default function PageWithText(props){
                 {SplitIntoParagraphs(Text,'\n')}
 
     
-                <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
+                <PrevAndNextBnt courseID={props.courseID} number={props.number} maxNumber={props.maxNumber}/>
                 <BackToMenuBtn/>
                 </Box>
             </div>

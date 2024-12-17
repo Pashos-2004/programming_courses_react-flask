@@ -8,8 +8,8 @@ import "./pageWithText.css"
 export default function PageWithVideo(props){
 
 
-    const [PageTitle,SetPageTitle] = useState("C++ это круто");
-    const [VideoLink,SetVideoLink] = useState('https://www.youtube.com/embed/H9-7ngqWZpk?si=BEx9epw-eYudECyw')
+    const [PageTitle,SetPageTitle] = useState(props.title);
+    const [VideoLink,SetVideoLink] = useState(props.url)
 
     function SaveBtnOnClick(){
 
@@ -17,7 +17,7 @@ export default function PageWithVideo(props){
 
     }
 
-    if(props.IsAdmin){
+    if(sessionStorage.getItem("isAdmin")=="true"){
         return (
             <div>
                 <Logo/>
@@ -52,7 +52,7 @@ export default function PageWithVideo(props){
                 
                 
                 
-                <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
+                <PrevAndNextBnt courseID={props.courseID} number={props.number} maxNumber={props.maxNumber}/>
                 <BackToMenuBtn />
                 </Box>
             </div>
@@ -66,7 +66,7 @@ export default function PageWithVideo(props){
                 <iframe width="640" height="315" src={VideoLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
     
-                <PrevAndNextBnt number={props.number} maxNumber={props.maxNumber}/>
+                <PrevAndNextBnt courseID={props.courseID} number={props.number} maxNumber={props.maxNumber}/>
                 <BackToMenuBtn/>
                 </Box>
             </div>

@@ -26,13 +26,16 @@ def validate_id(_id: str)->bool:
     if _id in non_valid or (not (_id.isdigit())): return False
     return True;    
 
-def check_token(request_data):
+def check_token(request_data,isAdmin=False):
     users = db.Users
     
     try:
         user = users.find_one({"_id":ObjectId(request_data["_id"])})
     except:
         return json.dumps({"status":403,"info":"Не найден пользователь"})
+    
+    if(user["isAdmin"]!=True and isAdmin):
+        return json.dumps({"status":403,"info":"Нет прав администратора"})
     ver_token = verify_token(request_data["token"])
     comp = compare_token_and_user_data(ver_token,user,request_data)
     if(comp !="OK"):

@@ -25,12 +25,17 @@ def change():
     comp = check_token(request_data)
     if(comp!="OK"):
         return comp
+    if(user["password"]!=request_data["old_password"]):
+        return json.dumps({"status":401,"info":"Неверный пароль"})
+    
+    users.update_one({"_id":ObjectId(request_data["_id"])},{"$set": { "password": request_data["password"] } })
+
+    user = users.find_one({"_id":ObjectId(request_data["_id"])})
     data = {
         "_id" : str(user["_id"]),
         'device': request_data["device"]
     }
     token = create_access_token(data=data)
-    user = users.find_one({"_id":ObjectId(request_data["_id"])})
     
     
     

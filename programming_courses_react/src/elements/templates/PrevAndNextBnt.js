@@ -8,13 +8,16 @@ import './PrevAndNextBnt.css'
 export default function PrevAndNextBnt(props){   
     function PrevBtnOnClick(){
         if(props.number>1){
-        console.log("Был клик назад")
+            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+(Number(props.number)-1)
         }
     }
 
     function NextBtnOnClick(){
   
-        if(props.maxNumber>props.number){console.log("Был клик вперёд")}
+        if(props.maxNumber>props.number){
+            
+            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+(Number(props.number)+1)
+        }
     }
 
     let prevBTN = props.number > 1 ? <Button variant="contained" onClick={PrevBtnOnClick}>Назад</Button> : <div></div>
