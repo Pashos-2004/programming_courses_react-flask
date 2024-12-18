@@ -8,7 +8,7 @@ export default  function MenuRowPage(props){
     let bgcolor= props.pageNum%2==0 ? colors.blue[100] : ""
     function rowOnClick(){
         //console.log("Был клик на строку: "+props.pageNum+". "+props.title+" id курса"+props.courseID)
-        document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+props.pageNum
+        document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+props.page_id
     }
 
     return(

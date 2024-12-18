@@ -34,11 +34,11 @@ def crate():
   
 
     if(request_data["page_type"]=="text_page"):
-        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"text":"text","pageNum":(course["countOfPages"]+1)}} } )
+        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"text":"text","pageNum":(course["countOfPages"]+1),"page_id":str(ObjectId())}} } )
     if(request_data["page_type"]=="video_page"):
-        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"_url":"_url","pageNum":(course["countOfPages"]+1)}} } )
+        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"_url":"_url","pageNum":(course["countOfPages"]+1),"page_id":str(ObjectId())}} } )
     if(request_data["page_type"]=="question_page_with_one_answer"):
-        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"question":"question","right_answer":"right_answer","pageNum":(course["countOfPages"]+1)}} } )
+        courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$push": { "pages": {"title":"title","type":request_data["page_type"],"question":"question","right_answer":"right_answer","pageNum":(course["countOfPages"]+1),"page_id":str(ObjectId())}} } )
     
     courses.update_one({"_id":ObjectId(request_data["course_id"])},{"$set":{"countOfPages":(course["countOfPages"]+1)}})
    

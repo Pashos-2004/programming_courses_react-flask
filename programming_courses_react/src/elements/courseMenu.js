@@ -207,7 +207,7 @@ export default  function CourseMenu (props){
                 
                 SetPages(data["pages"].map((el)=>{
                     
-                    return <MenuRowPage title={el["title"] } pageNum={el["pageNum"]} courseID={props.courseID}/>
+                    return <MenuRowPage title={el["title"] } pageNum={el["pageNum"]} page_id={el["page_id"]} courseID={props.courseID}/>
                 }))
                 //SetPages(data["pages"])
                 //SetCourses(courses.map((el)=>{ return <Course  courseText={el.get("courseText")} courseTitle={el.get("courseTitle")} picture={pictures.get(el.get("picture"))} id={el.get("id")}/>}))

@@ -33,6 +33,7 @@ def delete():
         return json.dumps({"status":404,"info":"Страница не найдена"})
     
     db.Log.insert_one({"deleted_info":courses.find_one({"_id":ObjectId(request_data["course_id"])}), "who_did_it":request_data["_id"] })
+    
     courses.delete_one({"_id":ObjectId(request_data["course_id"])})
     return json.dumps({"status":200})
 

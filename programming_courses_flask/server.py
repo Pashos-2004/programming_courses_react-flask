@@ -12,6 +12,9 @@ from static.fetch_page import fetch_page
 from static.change_course_main_info import change_course_main_info
 from static.create_page import create_page
 from static.delete_course import delete_course
+from static.delete_page import delete_page
+from static.update_page import update_page
+
 from pymongo import MongoClient
 
 app = Flask(__name__) 
@@ -25,7 +28,8 @@ app.register_blueprint(create_course)
 app.register_blueprint(change_course_main_info)
 app.register_blueprint(create_page)
 app.register_blueprint(delete_course)
-
+app.register_blueprint(delete_page)
+app.register_blueprint(update_page)
 
 CORS(app)
 

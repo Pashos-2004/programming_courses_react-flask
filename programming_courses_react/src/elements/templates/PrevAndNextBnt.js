@@ -8,7 +8,7 @@ import './PrevAndNextBnt.css'
 export default function PrevAndNextBnt(props){   
     function PrevBtnOnClick(){
         if(props.number>1){
-            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+(Number(props.number)-1)
+            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+props.prev_id
         }
     }
 
@@ -16,7 +16,7 @@ export default function PrevAndNextBnt(props){
   
         if(props.maxNumber>props.number){
             
-            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+(Number(props.number)+1)
+            document.location.href = "http://localhost:3000/course/"+props.courseID+"/page/"+props.next_id
         }
     }
 

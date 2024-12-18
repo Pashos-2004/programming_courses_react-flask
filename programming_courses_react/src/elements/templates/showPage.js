@@ -18,7 +18,8 @@ export default  function  ShowPage (props){
                 
                 let response;
                 
-                let values = {"token":sessionStorage.getItem("token"),"course_id":props.courseID,"device":navigator.userAgent.toString(),"_id":sessionStorage.getItem("user_id"),"num":props.num}
+                
+                let values = {"token":sessionStorage.getItem("token"),"course_id":props.courseID,"device":navigator.userAgent.toString(),"_id":sessionStorage.getItem("user_id"),"_url":window.location.href.replace("http://localhost:3000/","")}
                 
                 try
                 {
@@ -26,7 +27,8 @@ export default  function  ShowPage (props){
                     
                     
                     let data = response?.data
-                   
+                
+                    console.log(data)
                     if(data["status"]===404){
                         alert(data["info"]);
                         document.location.href = "http://localhost:3000/MainPage"
@@ -38,12 +40,24 @@ export default  function  ShowPage (props){
                     }
                     console.log(data)
                     let page=data["page"];
+                   
                     if(page["type"]=="text_page"){
-                        SetPage(<PageWithText IsAdmin={true} courseID={props.courseID} number={props.num} maxNumber={data["countOfPages"]} title ={page["title"]} text={page["text"]}/>)
+                        SetPage(<PageWithText IsAdmin={true} courseID={props.courseID} number={page["pageNum"]} 
+                            maxNumber={data["countOfPages"]} title ={page["title"]} 
+                            text={page["text"] } page_id={page["page_id"]}
+                            prev_id={data["prev_id"]} next_id={data["next_id"]}
+                            />)
                     }else if(page["type"]=="video_page"){
-                        SetPage(<PageWithVideo IsAdmin={true} courseID={props.courseID} number={props.num} maxNumber={data["countOfPages"]} title ={page["title"]} url={page["_url"]}/>)
+                        SetPage(<PageWithVideo IsAdmin={true} courseID={props.courseID} number={page["pageNum"]} 
+                            maxNumber={data["countOfPages"]} title ={page["title"]} url={page["_url"] } page_id={page["page_id"]}
+                            prev_id={data["prev_id"]} next_id={data["next_id"]}
+                            />)
                     }else if(page["type"]=="question_page_with_one_answer"){
-                        SetPage(<QuestionPageWithOneAnswer IsAdmin={true} courseID={props.courseID} number={props.num} maxNumber={data["countOfPages"]} title ={page["title"]} question={page["question"]  }  rightAnswer={page["right_answer"]}/>)
+                        SetPage(<QuestionPageWithOneAnswer IsAdmin={true} courseID={props.courseID} number={page["pageNum"]} 
+                            maxNumber={data["countOfPages"]} title ={page["title"]} question={page["question"]  }  
+                            rightAnswer={page["right_answer"]} page_id={page["page_id"]}
+                            prev_id={data["prev_id"]} next_id={data["next_id"] }  explanation={page["explanation"]}
+                            />)
                     }
                     //SetPages(data["pages"])
                     //SetCourses(courses.map((el)=>{ return <Course  courseText={el.get("courseText")} courseTitle={el.get("courseTitle")} picture={pictures.get(el.get("picture"))} id={el.get("id")}/>}))

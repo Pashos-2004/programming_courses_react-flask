@@ -22,7 +22,7 @@ function App() {
       <MainPage/>
     </div> )
   }else if(!(sessionStorage.getItem("isAuth")=="true")){
-    console.log("fdsfsdf")
+    
     if(cur_url=="auth-reg"){
       return (
         <div className="App">  
@@ -44,7 +44,7 @@ function App() {
     }else if(cur_url[0]=="course" && cur_url.length==4 ){
       
       if(cur_url[2]=="page"){
-        console.log(cur_url)
+        
         return(
         <div className="App">
            

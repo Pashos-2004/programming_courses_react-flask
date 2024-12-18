@@ -32,28 +32,33 @@ def get_page():
     if(course==None):
         return json.dumps({"status":404,"info":"Страница не найдена"})
     
-    page_num=request_data["num"]
-    print(page_num)
-    print(not (str(page_num)).isdigit())
-    if (not (str(page_num)).isdigit()):
-       return json.dumps({"status":404,"info":"Страница не найдена"})
-    page_num =int(page_num)
-    if (page_num>course["countOfPages"]):
-        return json.dumps({"status":404,"info":"Страница не найдена"})
+    page_num=request_data["_url"].replace("http://localhost:3000/","").split("/")[3]
+
     
+    
+    find = False 
+    prev = next = None
+
     for el in course["pages"]:
-        if(el["pageNum"]==page_num):
-            page=el
+        if(find):
+            next = el["page_id"]
             break
-    
+        if(el["page_id"]==page_num):
+            page=el
+            find=True
+            continue
+        
+        prev = el["page_id"]
+    if(not find):
+        return json.dumps({"status":404,"info":"Страница не найдена"})
     #if(page["type"]=="text_page"):
     #    return json.dumps({"status":200,"title":page["title"],"text":page["text"],"countOfPages":course["countOfPages"]})
     #if(page["type"]=="video_page"):
     #    return json.dumps({"status":200,"title":page["title"],"_url":page["_url"],"countOfPages":course["countOfPages"]})
     
     
-
+  
     
    
-    return json.dumps({"status":200,"countOfPages":course["countOfPages"],"page":page })
+    return json.dumps({"status":200,"countOfPages":course["countOfPages"],"page":page,"next_id":next,"prev_id":prev })
 
